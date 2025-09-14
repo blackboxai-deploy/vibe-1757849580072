@@ -1,0 +1,160 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+:root {
+  --color-black: #000000;
+  --color-gold: #C6A664;
+  --color-white: #FFFFFF;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: var(--font-inter), system-ui, sans-serif;
+    background-color: var(--color-black);
+    color: var(--color-white);
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-playfair), serif;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+}
+
+@layer components {
+  .text-gold {
+    color: var(--color-gold);
+  }
+  
+  .bg-gold {
+    background-color: var(--color-gold);
+  }
+  
+  .border-gold {
+    border-color: var(--color-gold);
+  }
+
+  .btn-gold {
+    @apply bg-gold text-black px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:bg-yellow-500 hover:shadow-lg transform hover:scale-105;
+  }
+
+  .btn-gold-outline {
+    @apply border-2 border-gold text-gold px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:bg-gold hover:text-black;
+  }
+
+  .card-gold {
+    @apply bg-gray-900/50 border border-gray-800 rounded-2xl p-6 transition-all duration-300 hover:border-gold/50 hover:shadow-lg hover:shadow-gold/20 hover:-translate-y-2;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-20;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .gradient-gold {
+    background: linear-gradient(135deg, var(--color-gold), #D4B570);
+  }
+  
+  .shadow-gold {
+    box-shadow: 0 10px 25px -3px rgba(198, 166, 100, 0.3), 0 4px 6px -2px rgba(198, 166, 100, 0.2);
+  }
+
+  .hero-slider {
+    height: 45vh;
+  }
+
+  @media (min-width: 768px) {
+    .hero-slider {
+      height: 60vh;
+    }
+  }
+
+  /* Mobile bottom padding for potential sticky elements */
+  @media (max-width: 768px) {
+    .pb-mobile {
+      padding-bottom: 20px;
+    }
+  }
+}
+
+/* Slider animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-in {
+  animation: slideIn 0.6s ease-out;
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #B8945A;
+}
+
+/* Loading states */
+.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Image lazy loading */
+img {
+  transition: opacity 0.3s ease;
+}
+
+img[loading="lazy"] {
+  opacity: 0;
+}
+
+img[loading="lazy"].loaded {
+  opacity: 1;
+}
